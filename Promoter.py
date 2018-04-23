@@ -60,8 +60,8 @@ def read_fasta(fp):
 print('Loading Positive and negative data...')
 
 # with open('data/bacillus.fa') as fp:
-# with open('data/ecoli.fa') as fp:
-with open('data/human_nontata.fa') as fp:
+with open('data/ecoli.fa') as fp:
+#with open('data/human_nontata.fa') as fp:
     pos_seq = []
     for name, seq in read_fasta(fp):
         pos_seq.append(seq)
@@ -69,9 +69,9 @@ print('pos_seq: ', len(pos_seq))
 
 
 # with open('data/bacillus_non.fa') as fp:
-# with open('data/ecoli_non.fa') as fp:
+with open('data/ecoli_non.fa') as fp:
 
-with open('data/human_nontata_non.fa') as fp:
+#with open('data/human_nontata_non.fa') as fp:
     neg_seq = []
     for name, seq in read_fasta(fp):
         neg_seq.append(seq)
@@ -94,10 +94,10 @@ print (str(len(pos_seq_train)) + ' positive train data loaded...')
 print (str(len(neg_seq_train)) + ' negative train data loaded...')
 
 pos_train_X, pos_train_y = seq_matrix(seq_list=pos_seq_train, label=1)
-print("pos_train_X: ", pos_train_X)
-print("pos_train_y: ", pos_train_y)
+#print("pos_train_X: ", pos_train_X)
+#print("pos_train_y: ", pos_train_y)
 neg_train_X, neg_train_y = seq_matrix(seq_list=neg_seq_train, label=0)
-print("neg_train_X: ", neg_train_X)
+#print("neg_train_X: ", neg_train_X)
 X_train = np.concatenate((pos_train_X, neg_train_X), axis=0)
 y_train = np.concatenate((pos_train_y, neg_train_y), axis=0)
 
@@ -106,8 +106,8 @@ print (str(len(neg_seq_test)) + ' negative test data loaded...')
 
 pos_test_X, pos_test_y = seq_matrix(seq_list=pos_seq_test, label=1)
 neg_test_X, neg_test_y = seq_matrix(seq_list=neg_seq_test, label=0)
-print("pos_test_X: ", pos_test_X)
-print("pos_test_y: ", pos_test_y)
+#print("pos_test_X: ", pos_test_X)
+#print("pos_test_y: ", pos_test_y)
 X_test = np.concatenate((pos_test_X, neg_test_X), axis=0)
 y_test = np.concatenate((pos_test_y,neg_test_y), axis=0)
 
@@ -138,14 +138,14 @@ model.compile(loss='binary_crossentropy',
 
 print ('Predicting on test data...')
 
-model.save_weights('model_human/my_model.hdf5')
+#model.save_weights('model_human/my_model.hdf5')
 # model.save_weights('model_bacillus/my_model.hdf5')
-# model.save_weights('model_ecolli/my_model.hdf5')
+model.save_weights('model_ecolli/my_model.hdf5')
 
 for i in range(10):
-    model.load_weights('model_human/my_model.hdf5')
+    #model.load_weights('model_human/my_model.hdf5')
     # model.load_weights('model_bacillus/my_model.hdf5')
-    # model.load_weights('model_ecolli/my_model.hdf5')
+    model.load_weights('model_ecolli/my_model.hdf5')
    #  model.load_weights('model/my_model_'+str(i)+'.hdf5')
     y_test_pred = model.predict(X_test, verbose=1)
 
