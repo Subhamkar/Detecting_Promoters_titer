@@ -6,6 +6,7 @@ import scipy.io
 
 import theano
 
+
 from keras.preprocessing import sequence
 from keras.optimizers import RMSprop, Adam
 from keras.models import Sequential
