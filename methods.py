@@ -3,8 +3,8 @@ import numpy as np
 def seq_length(seq_list):
     for i in range(len(seq_list)):
         seq = seq_list[i]
-        length = len(seq)
-    return length
+        l = len(seq)
+    return l
 
 
 def seq_matrix(seq_list, label):
@@ -44,3 +44,11 @@ def read_fasta(fp):
         else:
             seq.append(line)
     if name: yield (name, ''.join(seq))
+
+def length_seq(pos_seq_train):
+    seq_list = pos_seq_train
+    for i in range(len(seq_list)):
+        seq = seq_list[i]
+        seqlength = len(seq)
+    return seqlength
+
