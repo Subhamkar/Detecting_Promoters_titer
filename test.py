@@ -20,7 +20,8 @@ from sklearn import metrics
 #import Bio, math
 from sklearn.preprocessing import StandardScaler
 
-
+import scikitplot as skplt
+import matplotlib.pyplot as plt
 
 from hyperopt import Trials, STATUS_OK, tpe
 from keras.datasets import mnist
@@ -207,4 +208,14 @@ if __name__ == '__main__':
 
         #Specificity
         print('Specificity: ' + str(TN/ float(TN + FP)))
+        
+        
+        #skplt.metrics.plot_roc_curve(y_test, y_pred_round)
+        #plt.show()
+
+        fpr, tpr, thresholds = metrics.roc_curve(y_test, y_pred_round, pos_label=2)
+        plt.plot(fpr, tpr)
+        #plt.title("ROC Curve")
+        #plt.legend(loc=4)
+        plt.show()
 
